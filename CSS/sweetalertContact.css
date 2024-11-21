@@ -1,0 +1,14 @@
+.custom-alert {
+    background-color: #f0f4ff; /* Color de fondo personalizado */
+    color: #333;
+    border-radius: 10px;
+}
+
+.custom-title {
+    color: #0056b3; /* Color de título */
+    font-weight: bold;
+}
+
+.custom-icon {
+    color: #4caf50; /* Color del ícono */
+}

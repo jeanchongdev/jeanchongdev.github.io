@@ -1,0 +1,123 @@
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links li {
+    position: relative;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #f39c12;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #f39c12;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a.active {
+    color: #f39c12;
+  }
+  
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+    /* Menu Icon */
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  .menu-icon span {
+    background-color: white;
+    width: 25px;
+    height: 3px;
+    border-radius: 2px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .menu-icon.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .menu-icon.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-icon.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .menu-icon {
+          display: flex;
+        }
+      
+        .nav-links {
+          display: none;
+          flex-direction: column;
+
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 150px;
+          padding: 10px 0;
+        }
+      
+        .nav-links.active {
+          display: flex;
+          animation: fadeIn 0.5s ease;
+        }
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
