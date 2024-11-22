@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="CSS/sweetalertContact.css">
     <link rel="stylesheet" href="CSS/sticker.css">
     <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/visitantes.css">
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +33,13 @@
 <body>
 
     <nav class="navbar">
+
+        <div class="ojo">
+            <!-- Ícono de ojito -->
+            <i class="fas fa-eye" style="margin-right: 8px; color: #ffffff;"></i>
+            <span id="visitor-count">0</span>
+        </div>
+
         <div class="menu-icon" onclick="toggleMenu()">
           <span></span>
           <span></span>
@@ -383,5 +391,55 @@
     <!-- JS FontAwesome -->
     <script src="https://kit.fontawesome.com/a2e8d0339c.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+
+    <!-- Agrega el SDK clásico de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyDaz92pmaNCv-ARlz80H2PWjSPiQ_O9rww",
+        authDomain: "visitor-count-d81c1.firebaseapp.com",
+        databaseURL: "https://visitor-count-d81c1-default-rtdb.firebaseio.com",
+        projectId: "visitor-count-d81c1",
+        storageBucket: "visitor-count-d81c1.firebasestorage.app",
+        messagingSenderId: "99229138647",
+        appId: "1:99229138647:web:1860f7ee3997edd51efa92",
+        measurementId: "G-JN5BGLKJ3M"
+        };
+            
+        // Inicializa Firebase
+        firebase.initializeApp(firebaseConfig);
+      
+        const database = firebase.database();
+        const countRef = database.ref('visitor_count');
+      
+        // Incrementa el contador
+        countRef.once('value', (snapshot) => {
+          const currentCount = snapshot.val() || 0;
+          countRef.set(currentCount + 1);
+        });
+      
+        // Formatea el número al formato "1K", "1M", etc.
+        function formatCount(count) {
+          if (count >= 1000000) {
+            return (count / 1000000).toFixed(1) + 'M'; // Formato en millones
+          } else if (count >= 1000) {
+            return (count / 1000).toFixed(1) + 'K'; // Formato en miles
+          }
+          return count; // Si es menor a 1000, muestra el número normal
+        }
+      
+        // Mostrar el contador en la página
+        countRef.on('value', (snapshot) => {
+          const count = snapshot.val();
+          document.getElementById("visitor-count").textContent = formatCount(count);
+        });
+    </script>
+
 </body>
 </html>
