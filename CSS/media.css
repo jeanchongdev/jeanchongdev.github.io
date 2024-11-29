@@ -313,12 +313,16 @@
     
     .Proyectos-container {
         margin-top: 10px;
-        margin-left: 19px;
+        margin-left: 20px;
         margin-bottom: 50px;
         object-fit: cover;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .Proyectos-ocultos {
+        margin-left: 55px;
     }
 
     .Proyecto {
