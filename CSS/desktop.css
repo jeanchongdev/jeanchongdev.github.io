@@ -191,11 +191,11 @@ h2 {
 
 /* Animación */
 @keyframes borderAnimation {
-    0% {
+    10% {
         box-shadow: 0 0 15px rgb(255, 0, 0);
     }
     50% {
-        box-shadow: 0 0 15px rgb(23, 201, 207);
+        box-shadow: 0 0 15px rgb(39, 231, 177);
     }
     100% {
         box-shadow: 0 0 5px rgb(158, 16, 214);

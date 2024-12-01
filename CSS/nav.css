@@ -30,7 +30,7 @@
   }
 
   .nav-links a:hover {
-    color: #f39c12;
+    color: #ffffff;
   }
 
   .nav-links a::after {
@@ -38,11 +38,11 @@
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: #f39c12;
+    background-color: #25E7AF;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    transition: width 0.3s;
+    transition: width 0.6s;
   }
 
   .nav-links a:hover::after {
@@ -50,7 +50,7 @@
   }
 
   .nav-links a.active {
-    color: #f39c12;
+    color: #ffffff;
   }
   
   .nav-links a.active::after {
