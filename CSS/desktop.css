@@ -10,6 +10,7 @@ body {
     color: white;
     background-image: linear-gradient(to right top, #050505, #0b0b0b, #111113, #151517, #18181b);
     font-family: Arial, sans-serif;
+    cursor: none; /* Oculta el cursor predeterminado */
 }
 
 :root {
