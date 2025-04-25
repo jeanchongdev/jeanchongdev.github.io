@@ -6,7 +6,7 @@ const repositorio1 = document.querySelector(".Repositorio1");
 // Evento para mostrar los proyectos ocultos
 verMasBtn.addEventListener("click", function () {
     const proyectosOcultos = document.querySelector(".Proyectos-ocultos");
-    proyectosOcultos.style.display = "block"; // Mostrar proyectos ocultos
+    proyectosOcultos.style.display = "flex"; // Mostrar proyectos ocultos
     verMasBtn.parentElement.style.display = "none"; // Ocultar contenedor "Repositorio"
     repositorio1.style.display = "block"; // Mostrar contenedor "Repositorio1"
 });
