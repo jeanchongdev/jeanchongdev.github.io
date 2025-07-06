@@ -414,6 +414,28 @@
             </div>
         </div>
         <!-- Proyecto 11 fin-->
+
+        <!-- Proyecto 12 -->
+                <div class="Proyecto">
+            <img src="https://i.postimg.cc/JzrvDPmT/Captura-de-pantalla-2025-07-05-215613.png" class="Imagen">
+            <div class="Texto">
+                <h2>🌸 Waifu Gallery</h2>
+                <p class="Parrafo">Galería interactiva con imágenes aleatorias de waifus utilizando la API de Waifu Pics. ¡Descubre tu favorita!</p>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" height="40px" width="40px"/>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" height="40px" width="40px"/>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" height="40px" width="40px"/>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" height="40px" width="40px"/>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="40px" width="40px"/>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="40px" width="40px"/>
+                <div class="link">
+                    <div class="Codigo"> 
+                        <a href="https://waifus-gallery.vercel.app/" target="_blank">Sitio Web <i class="fa-solid fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Proyecto 12 fin-->
+
     </div>
 
     <!-- Botón "Ver más" -->
@@ -520,6 +542,145 @@
           document.getElementById("visitor-count").textContent = formatCount(count);
         });
     </script>
+
+    <script>
+    // Bloquear clic derecho
+    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+    // Bloquear teclas sensibles
+    window.addEventListener('keydown', function (e) {
+        if (e.keyCode == 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || // Ctrl+Shift+I / J
+            (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) || // Ctrl+U / S
+            (e.keyCode == 116 || (e.ctrlKey && e.keyCode == 82))) { // F5 / Ctrl+R
+            showAlert();
+            e.preventDefault();
+            return false;
+        }
+    }, true);
+
+    // Bloquear selección de texto
+    document.addEventListener('selectstart', function (e) { e.preventDefault(); });
+
+    // Bloquear arrastre de imágenes
+    document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+    // Detectar apertura de consola (método mejorado)
+    let devtools = { isOpen: false };
+
+    const element = new Image();
+    Object.defineProperty(element, 'id', {
+        get: function () {
+            if (!devtools.isOpen) {
+                devtools.isOpen = true;
+                showAlert();
+            }
+            throw new Error('Consola detectada');
+        }
+    });
+
+    setInterval(function () {
+        console.log('%c', element);
+    }, 1000);
+
+    function showAlert() {
+        Swal.fire({
+            title: '😏 Te descubrí',
+            html: `
+                <div id="particles-container" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0;"></div>
+                <div id="videoTimer" style="font-weight: bold; margin-bottom: 10px; z-index: 1; position: relative;">Tiempo: 0s</div>
+                <video id="alertVideo" width="100%" autoplay style="border-radius: 15px; box-shadow: 0 0 15px #00f;" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback">
+                    <source src="Nyah_arigato_tokyo_Leateq.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+                <br><strong style="position: relative; z-index: 1;">No puedes cerrar, pausar ni silenciar este video. Espera hasta que termine.</strong>
+            `,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            background: '#1e1e1e',
+            color: '#fff',
+            customClass: {
+                popup: 'animate__animated animate__jackInTheBox'
+            },
+            didOpen: () => {
+                tsParticles.load("particles-container", {
+                    fpsLimit: 60,
+                    particles: {
+                        number: { value: 50 },
+                        color: { value: ["#00f", "#0ff", "#f0f"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.7 },
+                        size: { value: { min: 2, max: 4 } },
+                        move: { enable: true, speed: 1, outModes: { default: "bounce" } }
+                    },
+                    interactivity: { detectsOn: "canvas" },
+                    detectRetina: true
+                });
+
+                const video = document.getElementById('alertVideo');
+                const timerDisplay = document.getElementById('videoTimer');
+
+                video.addEventListener('contextmenu', e => e.preventDefault());
+                video.addEventListener('click', e => e.preventDefault());
+
+                video.removeAttribute('controls');
+                video.disablePictureInPicture = true;
+                video.setAttribute('disablePictureInPicture', '');
+                video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+                video.addEventListener('enterpictureinpicture', function (e) {
+                    e.preventDefault();
+                });
+
+                window.addEventListener('keydown', function (e) {
+                    if (e.keyCode == 116 || (e.ctrlKey && e.keyCode == 82) ||
+                        (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) ||
+                        (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) ||
+                        (e.keyCode == 123)) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }, true);
+
+                let interval = setInterval(() => {
+                    timerDisplay.innerText = `Tiempo: ${Math.floor(video.currentTime)}s`;
+                }, 500);
+
+                let volumeChecker = setInterval(() => {
+                    if (video.muted || video.volume === 0) {
+                        clearInterval(interval);
+                        clearInterval(volumeChecker);
+                        Swal.fire({
+                            icon: 'error',
+                            title: '😏 Te descubrí',
+                            text: 'Intentaste silenciar el video. Redirigiendo...',
+                            timer: 3000,
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
+                        }).then(() => {
+                            window.location.href = "https://www.rickroll.com/";
+                        });
+                    }
+                }, 500);
+
+                video.onended = function () {
+                    clearInterval(interval);
+                    clearInterval(volumeChecker);
+
+                    const swalPopup = Swal.getPopup();
+                    swalPopup.classList.remove('animate__jackInTheBox');
+                    swalPopup.classList.add('animate__fadeOut');
+
+                    setTimeout(() => {
+                        window.location.href = "https://jeanchongdev.vercel.app/";
+                    }, 1000);
+                };
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
